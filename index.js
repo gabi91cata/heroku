@@ -18,10 +18,7 @@ var fs = require('fs');
 
 
 var cfg = {
-    ssl: true,
-    port: 2016,
-    ssl_key: 'ssl.key',
-    ssl_cert: 'ssl.crt'
+    ssl: false 
 };
 
 var httpServ = require('https')
