@@ -49,9 +49,7 @@ if (cfg.ssl) {
 
 
 
-var wss = new WebSocketServer({
-    server: app
-});
+var wss = WebSocketServer;
 
 function getMonday(d) {
   d = new Date(d);
