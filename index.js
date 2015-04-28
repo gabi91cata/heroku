@@ -33,3 +33,5 @@ app.get('/', function(request, response) {
 });
 
 
+var DB = require('database.js');
+ 
