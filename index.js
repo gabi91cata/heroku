@@ -26,12 +26,20 @@ wss.on("connection", function(ws) {
     clearInterval(id)
   })
 })
-
+var DB = require('database.js');
 
 app.get('/', function(request, response) {
-  response.send('Hello World!');
+
+
+  	DB.query("UPDATE users SET online = 0  ' ", function(a){
+  	  response.send('Hello World!');
+
+  		
+  	});
+
+
+
 });
 
 
-var DB = require('database.js');
- 
+
