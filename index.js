@@ -26,3 +26,10 @@ wss.on("connection", function(ws) {
     clearInterval(id)
   })
 })
+
+
+app.get('/', function(request, response) {
+  response.send('Hello World!');
+});
+
+

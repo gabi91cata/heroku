@@ -1,5 +1,5 @@
-var DB = require('include/database.js');
-
+var DB = require('database.js');
+ 
 
 function merge_options(obj1, obj2) {
     var obj3 = {};
