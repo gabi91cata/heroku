@@ -20,6 +20,37 @@ function getMonday(d) {
       diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
   return new Date(d.setDate(diff));
 }
+
+ var mysql      = require('mysql');
+
+
+ 
+var pool = mysql.createPool({
+  		host     : 'consultadoctor.ro',
+  		user     : 'drdealsr',
+  		database : 'drdealsr_webchat',
+  		password : 'l5skm1sxca'
+});
+   
+var query = function(query, callback){
+
+	try{
+
+	pool.query(query, function(err, rows, fields) {
+		if(!err)
+			callback(rows);
+		
+	});
+	
+	}catch(error){
+		console.log(error);
+	}
+}
+ 
+
+
+
+
 wss.on("connection", function(ws) {
 
     var session = {};
@@ -351,32 +382,6 @@ wss.on("connection", function(ws) {
     }, 1000);
 
 })
- var mysql      = require('mysql');
-
-
- 
-var pool = mysql.createPool({
-  		host     : 'consultadoctor.ro',
-  		user     : 'drdealsr',
-  		database : 'drdealsr_webchat',
-  		password : 'l5skm1sxca'
-});
-   
-var query = function(query, callback){
-
-	try{
-
-	pool.query(query, function(err, rows, fields) {
-		if(!err)
-			callback(rows);
-		
-	});
-	
-	}catch(error){
-		console.log(error);
-	}
-}
- 
 
  
 
