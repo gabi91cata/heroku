@@ -26,15 +26,42 @@ wss.on("connection", function(ws) {
     clearInterval(id)
   })
 })
-var DB = require('database.js');
+ var mysql      = require('mysql');
+
+
+ 
+var pool = mysql.createPool({
+  		host     : 'consultadoctor.ro',
+  		user     : 'drdealsr',
+  		database : 'drdealsr_webchat',
+  		password : 'l5skm1sxca'
+});
+   
+var query = function(query, callback){
+
+	try{
+
+	pool.query(query, function(err, rows, fields) {
+		if(!err)
+			callback(rows);
+		
+	});
+	
+	}catch(error){
+		console.log(error);
+	}
+}
+ 
+
+ 
 
 app.get('/', function(request, response) {
 
 
-  	DB.query("UPDATE users SET online = 0  ' ", function(a){
-  	  response.send('Hello World!');
+  	query("UPDATE users SET online = 0  ' ", function(a){
+  	  response.send('Hello World!'); 
 
-  		
+
   	});
 
 
