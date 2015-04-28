@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "express": "~4.9.x",
-     "ws": "0.4.x"
+     "ws": "0.4.x",
+     "mysql": "x"
   },
   "engines": {
     "node": "0.12.2"
