@@ -57,9 +57,9 @@ var query = function(query, callback){
 
 app.get('/', function(request, response) {
 
- 	response.send('Hello World!'); 
-  	query("UPDATE users SET online = 0   ", function(a){
-  	 
+  
+  	query("SELECT * FROM users  ", function(a){
+  	
  	response.send(a); 
 
   	});
