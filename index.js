@@ -60,7 +60,7 @@ app.get('/', function(request, response) {
  	response.send('Hello World!'); 
   	query("UPDATE users SET online = 0   ", function(a){
   	 
- 	response.send('Hello World!'); 
+ 	response.send(a); 
 
   	});
 
