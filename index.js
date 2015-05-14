@@ -1,18 +1,18 @@
-var WebSocketServer = require("ws").Server;
-var http = require("http");
-var express = require("express");
-var app = express();
-var port = process.env.PORT || 5000;
-app.use(express.static(__dirname +"/"));
-var server = http.createServer(app);
-server.listen(port);
-var pool = mysql.createPool({
-        host     : 'consultadoctor.ro',
-        user     : 'drdealsr',
-        database : 'drdealsr_webchat',
-        password : 'l5skm1sxca'
-});
-var wss = new WebSocketServer({server: server, path:"/"});
+var WebSocketServer = require("ws").Server
+var http = require("http")
+var express = require("express")
+var app = express()
+var port = process.env.PORT || 5000
+
+app.use(express.static(__dirname + "/api"))
+
+var server = http.createServer(app)
+server.listen(port)
+
+console.log("http server listening on %d", port)
+
+var wss = new WebSocketServer({server: server, path:""})
+console.log("websocket server created")
 
 function getMonday(d) {
   d = new Date(d);
@@ -21,22 +21,29 @@ function getMonday(d) {
   return new Date(d.setDate(diff));
 }
 
-var mysql = require('mysql');
+ var mysql      = require('mysql');
 
 
-
+ 
+var pool = mysql.createPool({
+  		host     : 'consultadoctor.ro',
+  		user     : 'drdealsr',
+  		database : 'drdealsr_webchat',
+  		password : 'l5skm1sxca'
+});
    
 var query = function(query, callback){
 
 	try{
-	   pool.query(query, function(err, rows, fields) {
-	       if(!err)
-	           callback(rows);
+
+	pool.query(query, function(err, rows, fields) {
+		if(!err)
+			callback(rows);
 		
-	   });
-	}
-    catch(error)
-    {
+	});
+	
+	}catch(error){
+		console.log(error);
 	}
 }
  
@@ -50,7 +57,7 @@ function merge_options(obj1, obj2) {
         obj3[attrname] = obj2[attrname];
     }
     return obj3;
-} 
+}
 var actions = [];
 
 
@@ -389,19 +396,18 @@ wss.on("connection", function(ws) {
 
  
 
-app.get('/', function(request, response) {  
+app.get('/', function(request, response) {
+
+  
   	query("SELECT * FROM users  ", function(a){
-        response.send(a); 
+  	
+ 	response.send(a); 
+
   	});
+
+
+
 });
-
-
-
-
-
-
-
-
 
 
 
