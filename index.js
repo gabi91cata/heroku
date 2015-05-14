@@ -8,11 +8,9 @@ app.use(express.static(__dirname + "/api"))
 
 var server = http.createServer(app)
 server.listen(port)
+ 
 
-console.log("http server listening on %d", port)
-
-var wss = new WebSocketServer({server: server})
-console.log("websocket server created")
+var wss = new WebSocketServer({server: server, path:"/api"});
 
 function getMonday(d) {
   d = new Date(d);
