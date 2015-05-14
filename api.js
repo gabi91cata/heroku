@@ -47,42 +47,27 @@ function merge_options(obj1, obj2) {
 wss.on("connection", function(ws) {
 
     ws.on('close', function() {
-		if(session.username)
-			query("UPDATE users SET online = 0 WHERE username = '"+session.username+"' ", function(){});
+		 
     });
 	
 
 
     ws.on('error', function() {
-        console.log('ERROR');
-        clearInterval(interval);
+      
 
     });
 
 
 
 
-    var send = function(data) {
-        var ts = JSON.stringify(data);
-
-        if (ts != lastSend) {
-            ws.send(ts, function(error) {
-                console.log(error);
-                console.log(ts);
-            });
-            lastSend = ts;
-        }
-    }
+ 
 
     ws.on('message', function(message) {
         var m = JSON.parse(message);
         send(m);
     });
  
-
-    wss.clients.forEach(function each(client) {
-        client.send(JSON.stringify( wss.clients));
-    });
+    ws.send("test", function(){});
   
 })
 
