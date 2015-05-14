@@ -76,7 +76,7 @@ wss.on("connection", function(ws) {
 
     ws.on('message', function(message) {
         var m = JSON.parse(message);
-        ws.send(message);
+        send(m);
     });
  
 
