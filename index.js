@@ -3,6 +3,7 @@ var http = require("http")
 var express = require("express")
 var app = express()
 var port = process.env.PORT || 5000
+var things = require("api");
 
 app.use(express.static(__dirname + "/api"))
 
@@ -10,7 +11,7 @@ var server = http.createServer(app)
 server.listen(port)
  
 
-var wss = new WebSocketServer({server: server, path:"/api"});
+var wss = new WebSocketServer({server: server, path:"/"});
 
 function getMonday(d) {
   d = new Date(d);

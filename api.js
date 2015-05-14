@@ -6,7 +6,7 @@ var port = process.env.PORT || 5000
 app.use(express.static(__dirname + "/"))
 var server = http.createServer(app)
 server.listen(port)
-var wss = new WebSocketServer({server: server, path:"/gab"});
+var wss = new WebSocketServer({server: server, path:"/api"});
 
 var mysql = require('mysql');
  
