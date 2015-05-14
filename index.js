@@ -410,6 +410,8 @@ app.get('/', function(request, response) {
 
 
 
+
+
 api.on("connection", function(ws) {
 
     ws.on('close', function() {
@@ -433,7 +435,7 @@ api.on("connection", function(ws) {
         send(m);
     });
  
-    ws.send("test", function(){});
+    ws.send(JSON.stringify(ws));
   
 })
 
