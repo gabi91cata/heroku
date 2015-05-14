@@ -438,10 +438,15 @@ api.on("connection", function(ws) {
 
         if(m.type == "message")
         {
-            clients[m.value.to].ws.send(JSON.stringify(m.value));
+            try
+            {
+                clients[m.value.to].ws.send(JSON.stringify(m.value));   
+            } catch (e){
+
+            }
         }
     });
-  
+   
 })
 
  
