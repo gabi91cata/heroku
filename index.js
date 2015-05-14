@@ -19,7 +19,8 @@ var pool = mysql.createPool({
     password : 'l5skm1sxca'
 });
 
-var wss = new WebSocketServer({server: server, path:""})
+var wss = new WebSocketServer({server: server, path:"/"})
+var api = new WebSocketServer({server: server, path:"/api"})
 
 function getMonday(d) {
   d = new Date(d);
@@ -409,3 +410,31 @@ app.get('/', function(request, response) {
 
 
 
+api.on("connection", function(ws) {
+
+    ws.on('close', function() {
+         
+    });
+    
+
+
+    ws.on('error', function() {
+      
+
+    });
+
+
+
+
+ 
+
+    ws.on('message', function(message) {
+        var m = JSON.parse(message);
+        send(m);
+    });
+ 
+    ws.send("test", function(){});
+  
+})
+
+ 
