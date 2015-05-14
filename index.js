@@ -411,6 +411,8 @@ app.get('/', function(request, response) {
 
 
 
+var clients = {};
+
 
 api.on("connection", function(ws) {
 
@@ -421,21 +423,24 @@ api.on("connection", function(ws) {
 
 
     ws.on('error', function() {
-      
 
     });
 
-
-
-
- 
 
     ws.on('message', function(message) {
         var m = JSON.parse(message);
-        send(m);
+        if(m.type == "login")
+        {
+            clients[m.value.username] = {
+                ws: ws
+            };
+        }
+
+        if(m.type == "message")
+        {
+            clients[m.value.to].ws.send(JSON.stringify(m.value));
+        }
     });
- 
-    ws.send(JSON.stringify(ws));
   
 })
 
