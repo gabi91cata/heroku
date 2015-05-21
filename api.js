@@ -44,4 +44,32 @@ function merge_options(obj1, obj2) {
 
 
 
+wss.on("connection", function(ws) {
+
+    ws.on('close', function() {
+		 
+    });
+	
+
+
+    ws.on('error', function() {
+      
+
+    });
+
+
+
+
+ 
+
+    ws.on('message', function(message) {
+        var m = JSON.parse(message);
+        send(m);
+    });
+ 
+    ws.send("test", function(){});
+  
+})
+
+ 
 
